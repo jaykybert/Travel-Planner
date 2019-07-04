@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {% if city == None %}
+        <title>Places to visit!</title>
+    {% else %}
+        <title>Places in {{ city }}</title>
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <div id="places">
+        {% if city == None %}
+            <h1>Places to visit!</h1>
+        {% else %}
+            <h1>Places in {{ city }}</h1>
+        {% endif %}
+
+        <p>Using the text fields below, enter a city of your choosing in the
+            first textbox, followed by a keyword in the next.</p>
+
+        <div id="places_settings">
+            <form action="{{ url_for('places') }}" method="get">
+
+                <label>City <br />
+                    <input type="text" name="city_name" required="required"
+                           class="text_box" autofocus/></label> <br />
+
+                <label>Keyword <br />
+                    <input type="text" name="place_type" required="required"
+                           class="text_box"/></label> <br />
+
+                <label>Sort by
+                <select name="sort_by">
+                    <option value="default">Default</option>
+                    <option value="rating_a">Rating (ascending)</option>
+                    <option value="rating_d">Rating (descending)</option>
+                    <option value="number">Number of Reviews</option>
+                </select></label>
+
+                <input type="submit" value="GO" class="submit_button"/>
+            </form>
+        </div>
+
+        <!-- Show place information if the request was successful. -->
+        {% if places != None %}
+            {% for place in places %} <hr /> <p>
+                {{ place['name'] }} <br />
+                {{ place['address'] }} <br />
+                {% if place['open'] == True %}
+                    Currently Open
+                {% else %}
+                    Closed
+                {% endif %} <br />
+                {% if place['rating'] != 'n/a' %}
+                    {{ place['rating'] }}/5 <i>from {{ place['total'] }}
+                        reviews</i> <br /></p>
+                {% endif %}
+            {% endfor %}
+        {% endif %} <hr />
+
+        <p class="align_text"><i>All place data sourced from
+            <a href="https://cloud.google.com/maps-platform/places/"
+               target="_blank">Google's Places API</a>.</i></p>
+    </div>
+
+{% endblock content %}

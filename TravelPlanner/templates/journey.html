@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {% if journey == None %}
+        <title>Journey</title>
+    {% else %}
+        <title>Journey to {{ journey['end'] }}</title>
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <div id="journey">
+        {% if journey == None %}
+            <h1>Journey</h1>
+        {% else %}
+            <h1>Journey to {{ journey['end'] }}</h1>
+        {% endif %}
+
+        <p class="align_text">Please use the text boxes below to specify your
+            place of departure and arrival.<br /> Use the checkboxes to specify
+            what you want to see.</p>
+
+        <div id="journey_settings">
+
+        <form action="{{ url_for('journey') }}" method="get">
+            <label>Departure <br />
+                <input type="text" name="departure" class="text_box"
+                       required="required" autofocus/></label> <br />
+
+            <label>Destination <br />
+                <input type="text" name="destination" class="text_box"
+                       required="required"/></label> <br /> <br />
+
+            <div id="journey_checkboxes">
+                <label><input type="checkbox" name="overview" value="true"/>
+                    Display Overview</label> <br />
+
+                <label><input type="checkbox" name="display_steps"
+                              value="true"/>Display Steps</label> <br />
+            </div>
+
+            <p>Distance</p>
+            <!-- Update the default radio button after form submission. -->
+            {% if dist != 'mile' %}
+                <label><input type="radio" name="dist_unit" value="km"
+                              checked="checked"/>Metric</label>
+                <label><input type="radio" name="dist_unit" value="mile"/>
+                    Imperial</label>
+
+            {% else %}
+                <label><input type="radio" name="dist_unit" value="km"/>
+                    Metric</label>
+                <label><input type="radio" name="dist_unit" value="mile"
+                              checked="checked"/>Imperial</label>
+            {% endif %} <br />
+
+            <input type="submit" value="GO" class="submit_button"/>
+        </form>
+        </div>
+
+        <!-- Journey is None on the first page visit and
+                when the location provided is invalid. -->
+        {% if journey == None %} <hr />
+            <p class="align_text">If the search isn't returning any information,
+                try using postcodes or coordinates for more precise places of
+                departure and arrival.</p>
+        {% endif %}
+
+        <!-- Journey Overview -->
+        {% if overview == "true" and journey != None %} <hr />
+            <h3>Journey Overview</h3> <p>
+            From: {{ journey['start'] }} <br />
+            To: {{ journey['end'] }} <br />
+            Distance: {% if dist == 'km' %} {{ journey['metric'] }}
+                      {% else  %} {{ journey['imperial'] }}
+                      {% endif %} <br />
+            Duration: {{ journey['time'] }} <br />
+            Route: {{ journey['summary'] }} <br />
+            {% if journey['warnings']|length > 0 %}
+                Warnings:
+                {% for warning in journey['warnings'] %}
+                    {{ warning }}
+                {% endfor %}
+            {% endif %}  </p>
+        {% endif %}
+
+        <!-- Journey Steps -->
+        {% if display_steps == "true" and steps != None %} <hr />
+            <h3>Journey Steps</h3>
+            {% for step in steps %} <p>
+                {{ step['route']|striptags }} <br />
+                For {% if dist == 'km' %} {{ step['metric'] }}
+                    {% else %} {{ step['imperial'] }}
+                    {% endif %} <br />
+                Time: {{ step['time'] }} <br /> </p> <hr />
+            {% endfor %}
+        {% endif %} <hr />
+
+         <p class="align_text"><i>All journey data sourced from
+             <a href="https://cloud.google.com/maps-platform/routes/"
+                target="_blank">Google's Routes API</a>.</i></p>
+    </div>
+
+{% endblock content %}

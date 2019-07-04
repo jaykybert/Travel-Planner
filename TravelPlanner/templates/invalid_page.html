@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Oops! Error 404!</title>
+{% endblock title %}
+
+{% block content %}
+    <div id="invalid_page">
+
+        <h1>Sorry, We couldn't find that page!</h1>
+        <p>We received the following error: <br> <i>{{ error }}</i></p>
+
+        <p>Please use the navigation bar at the top of the page to return
+            to a valid web-page.</p>
+
+    </div>
+{% endblock content %}

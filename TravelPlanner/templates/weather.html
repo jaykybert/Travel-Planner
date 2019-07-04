@@ -1,0 +1,105 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+    {% if today == None %}
+        <title>Weather</title>
+    {% else %}
+        <title>Weather for {{ today['name'] }}</title>
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <div id="weather">
+        {% if today == None %}
+            <h1>Weather</h1>
+        {% else %}
+            <h1>Weather for {{ today['name'] }}</h1>
+        {% endif %}
+
+        <p>Use the text field below to show the weather for that city!<br />
+                Forecast information is based on the predictions for midday.
+            Forecasts are only available for the next five days.</p>
+
+        <div id="weather_settings">
+        <form action="{{ url_for('weather') }}" method="get">
+
+            <label>Weather for...<br /><input type="text" autofocus
+                                                     name="weather_place"
+                                                     required="required"
+                                                     class="text_box"/></label>
+            <p>Temperature</p>
+            <!-- Update the default radio buttons after form submission. -->
+            {% if temp == 'f' %}
+                <label>Celsius
+                    <input type="radio" name="temp_unit" value="c"/></label>
+                <label>Fahrenheit
+                    <input type="radio" name="temp_unit" value="f"
+                           checked="checked"/></label>
+            {% else %}
+                <label>Celsius
+                    <input type="radio" name="temp_unit" value="c"
+                           checked="checked"/></label>
+                <label>Fahrenheit
+                    <input type="radio" name="temp_unit" value="f"/></label>
+            {% endif %}
+
+            <p>Wind Speed</p>
+            {% if speed == 'mph' %}
+                <label>m/s
+                    <input type="radio" name="speed_unit" value="m/s"/></label>
+                <label>mph
+                    <input type="radio" name="speed_unit" value="mph"
+                           checked="checked"/></label>
+            {% else %}
+                <label>m/s
+                    <input type="radio" name="speed_unit" value="m/s"
+                           checked="checked"/></label>
+                <label>mph
+                    <input type="radio" name="speed_unit" value="mph"/></label>
+            {% endif %} <br /> <br />
+
+            <input type="submit" value="GO" class="submit_button"/>
+        </form>
+    </div>
+
+    <!-- Show today's weather if the request was successful. -->
+    {% if today != None %} <hr />
+        <h3>Today - Current</h3>
+        <p>{{ today['desc'] }} <br />
+        Temperature:
+            {% if temp == 'f' %} {{ today['temp_f'] }}°F
+            {% else %} {{ today['temp_c'] }}°C
+            {% endif %} <br />
+        Wind Speed:
+            {% if speed == 'mph' %} {{ today['speed_mph'] }} mph
+            {% else %} {{ today['speed_ms'] }} m/s
+            {% endif %}</p>
+
+    {% else %}
+        <p>If no results are being returned, try adding the country code to
+        the end, separated by a comma. <i>(Bournemouth, UK)</i></p>
+    {% endif %}
+
+    <!-- Show weather forecast if the request was successful. -->
+    {% if forecast != None %}
+        {% for day in forecast %} <hr />
+            <h3>{{ day['date'] }}</h3>
+            <p>{{ day['desc'] }} <br />
+            Temperature:
+                {% if temp == 'f' %} {{ day['temp_f'] }}°F
+                {% else %} {{ day['temp_c'] }}°C
+                {% endif %} <br />
+            Wind Speed:
+                {% if speed == 'mph' %} {{ day['speed_mph'] }} mph
+                {% else %} {{ day['speed_ms'] }} m/s
+                {% endif %} <br /></p>
+        {% endfor %}
+    {% endif %} <hr />
+
+    <p><i>All weather data sourced from <a href="https://openweathermap.org/"
+                                           target="_blank">openweathermap</a>.
+    </i></p>
+
+    </div>
+
+{% endblock content %}

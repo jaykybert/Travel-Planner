@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock title %}
+
+{% block content %}
+    <div id="home">
+
+        <h1>Home</h1>
+        <p>This website provides you with features for seeing live weather data,
+            planning a journey, and viewing relevant places that may be of
+            interest. Simply click on a tile on the navigation bar to visit the
+            respective page. <br />Below is a more detailed description of each
+            service and how to use them.</p> <br />
+
+        <div id="home_descriptions">
+            <h2>Weather</h2>
+            <p>The weather web-page provides current weather information as well
+                as a five day forecast. Simply enter the name of the location
+                you wish to see the weather for, as well as the units it's
+                displayed in, and it should appear. If nothing is returned, the
+                location may not be supported. If the wrong place is returned,
+                specify the country code, e.g. <i>Bournemouth, UK</i>.</p>
+            <br />
+            <h2>Journey</h2>
+            <p>The journey web-page asks you to enter a place of departure and
+                destination. You can choose to view the journey overview or each
+                individual step, or both. This feature works best with precise
+                locations, as opposed to the weather web-page. This web-page
+                also allows you to change the units from metric to imperial.</p>
+            <br />
+            <h2>Places</h2>
+            <p>The places web-page is designed to allow you to freely choose
+                what information you want to see. Simply enter the name of the
+                city in the first textbox, and a keyword (or type of place) in
+                the second. For example, <i>Bournemouth</i> and <i>Pizza</i>
+                will return information relevant to pizza shops in Bournemouth.
+                Similar to weather, if the wrong city is being returned, write
+                the country code too. You have the option to sort the search by
+                rating (asc & desc), as well as by the number of reviews.</p>
+        </div>
+    </div>
+
+{% endblock content %}

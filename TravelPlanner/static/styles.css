@@ -1,0 +1,197 @@
+body {
+    background-color: #F0F8FF;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: underline;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+h2  {
+    font-size: 20px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.align_text {
+    text-align: center;
+}
+
+
+/* ---------- NAVIGATION BAR ---------- */
+
+ul {
+    background-color: #333;
+    border-bottom: 2px double black;
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding-right: 5px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+    color: white;
+    display: block;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #FFF;
+    color: #000;
+    font-style: italic;
+}
+
+
+/* ---------- HOME PAGE ---------- */
+
+#home {
+    margin: auto;
+    text-align: center;
+    width: 1000px;
+}
+
+#home_descriptions {
+    margin: auto;
+    text-align: center;
+    width: 600px;
+}
+
+
+/* ---------- JOURNEY PAGE ---------- */
+
+#journey {
+    margin: auto;
+    text-align: left;
+    width: 700px;
+}
+
+#journey_checkboxes {
+    text-align: left;
+}
+
+#journey_settings {
+    border: 2px solid #444;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    width: 200px;
+}
+
+#journey_settings h3 {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.journey_title {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+
+/* ---------- WEATHER PAGE ---------- */
+
+#weather {
+    margin: auto;
+    text-align: center;
+    width: 550px;
+}
+
+#weather_settings {
+    border: 2px solid #444;
+    line-height: 0.5em;
+    margin: auto;
+    padding: 5px;
+    text-decoration: none;
+    width: 225px;
+}
+
+
+/* ---------- PLACES PAGE ---------- */
+
+#places {
+    margin: auto;
+    text-align: center;
+    width: 650px;
+}
+
+#places_settings {
+    border: 2px solid #444;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    width: 200px;
+}
+
+
+/* ---------- INVALID PAGE ---------- */
+
+#invalid_page {
+    line-height: 2em;
+    margin: auto;
+    text-align: center;
+    width: 90%;
+}
+
+
+/* ---------- API SOURCE LINKS ---------- */
+
+p a {
+    color: #000;
+    text-decoration: underline;
+}
+
+p a:visited {
+    color: #32CD32;
+}
+
+
+/* ---------- FORM ELEMENTS ---------- */
+
+.submit_button {
+    background-color: #333;
+    border: 2px solid #FFF;
+    color: #FFF;
+    height: 25px;
+    margin: 5px;
+    text-align: center;
+    width: 75px;
+}
+
+.submit_button:hover {
+    border: 2px solid #00BFFF;
+}
+
+.submit_button:active {
+    background-color: #FFF;
+    color: #000;
+}
+
+.text_box {
+    background-color: #333;
+    border: 1px solid #FFF;
+    color: #FFF;
+    font-size: 15px;
+    height: 20px;
+    margin-top: 10px;
+    text-align: center;
+    width: 175px;
+}

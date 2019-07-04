@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+
+    {% block title %}
+    {% endblock title %}
+</head>
+
+<body>
+    <ul>
+        <li><a href="{{ url_for('home') }}">Homepage</a></li>
+        <li><a href="{{ url_for('journey') }}">Journey</a></li>
+        <li><a href="{{ url_for('weather') }}">Weather</a></li>
+        <li><a href="{{ url_for('places') }}">Places</a></li>
+    </ul>
+
+    <div id="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+
+</html>
