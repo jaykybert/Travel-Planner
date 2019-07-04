@@ -17,7 +17,7 @@ def get_places(location, keyword):
     if location is None or keyword is None:
         return None
 
-    api_key = 'AIzaSyCZJeSoQak3iDIK0STpnSirmoLrbLudoL8'
+    api_key = ''
 
     search_term = '%s %s' % (location, keyword)
     places_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?' \

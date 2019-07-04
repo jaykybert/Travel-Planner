@@ -74,7 +74,7 @@ def get_journey(departure, arrival):
     """
     if departure is None or arrival is None:
         return None, None
-    api_key = 'AIzaSyAMX8fbUOm3F_LTO1g1-ypCK7hSUJTsDAM'
+    api_key = ''
 
     journey_url = 'https://maps.googleapis.com/maps/api/directions/json?ori' \
                   'gin=%s&destination=%s&key=%s' % (departure, arrival, api_key)

@@ -45,7 +45,7 @@ def get_current_weather(location):
     if location is None:
         return None
 
-    api_key = '79712b2beb7ffdde12a83da0c8063723'
+    api_key = ''
 
     current_weather_url = 'https://api.openweathermap.org/data/2.5' \
                           '/weather?q=%s&APPID=%s' % (location, api_key)
